@@ -52,11 +52,12 @@ public class Product implements Serializable {
 
 
 
-    public Product(String productBarcodeNo, String scanTime, String scanDate) {
+    public Product(String productBarcodeNo, String scanTime, String scanDate,
+                   String itemName) {
         this.productBarcodeNo = productBarcodeNo;
         this.scanTime = scanTime;
         this.scanDate = scanDate;
-        this.productName = "";
+        this.productName = itemName;
     }
 
     public Product(){

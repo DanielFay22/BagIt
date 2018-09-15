@@ -30,6 +30,7 @@ import com.edwardvanraak.materialbarcodescanner.MaterialBarcodeScannerBuilder;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.nextinnovation.pt.barcodescanner.R;
 import com.nextinnovation.pt.barcodescanner.database.DatabaseHelper;
+import com.nextinnovation.pt.barcodescanner.database.ItemInfo;
 import com.nextinnovation.pt.barcodescanner.fragment.BarcodeFragment;
 import com.nextinnovation.pt.barcodescanner.fragment.LicenseFragment;
 import com.nextinnovation.pt.barcodescanner.fragment.ProductListFragment;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
     private final String TAG = MainActivity.class.getSimpleName() ;
     private final int MY_PERMISSION_REQUEST_CAMERA = 1001;
     private ItemScanned itemScanned ;
+    private ItemInfo itemInfo;
 
 
 
@@ -69,6 +71,8 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
         setupViewPager(viewPager);
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        itemInfo = new ItemInfo();
 
     }
 
@@ -202,15 +206,17 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
 //        licensesFragment.show(getSupportFragmentManager().beginTransaction(), "dialog_licenses");
 //    }
 
-    private void showDialog(final String scanContent, final String currentTime, final String currentDate) {
+    private void showDialog(final String scanContent, final String currentTime,
+                            final String currentDate) {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
-        builder.setMessage(scanContent)
+        builder.setMessage(itemInfo.getItem(scanContent))
                 .setTitle(R.string.dialog_title);
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 DatabaseHelper databaseHelper = new DatabaseHelper(context);
-                databaseHelper.addProduct(new Product(scanContent,currentTime,currentDate));
+                databaseHelper.addProduct(new Product(scanContent,currentTime,currentDate,
+                        itemInfo.getItem(scanContent)));
                 Toast.makeText(MainActivity.this, "Saved", Toast.LENGTH_SHORT).show();
                 viewPager.setCurrentItem(1);
 
@@ -281,7 +287,7 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
                     @Override
                     public void onResult(Barcode barcode) {
                         barcodeResult = barcode;
-                        showDialog(barcode.rawValue , getScanTime(),getScanDate());
+                        showDialog(barcode.rawValue , getScanTime(), getScanDate());
                     }
                 })
                 .build();
