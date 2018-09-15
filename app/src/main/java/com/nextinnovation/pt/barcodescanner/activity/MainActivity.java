@@ -85,8 +85,8 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new BarcodeFragment(), "Barcode Scanner");
-        adapter.addFragment(new ProductListFragment(), "Scan Item");
+        adapter.addFragment(new BarcodeFragment(), "Scan Item");
+        adapter.addFragment(new ProductListFragment(), "View Cart");
         viewPager.setAdapter(adapter);
     }
 
