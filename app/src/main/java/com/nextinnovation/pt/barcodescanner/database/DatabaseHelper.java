@@ -24,6 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_INSTRUCTOR = "create table "
             + TABLE_PRODUCT
             + " (id integer primary key autoincrement,"
+            + " product_name varchar(30),"
             + " product_code varchar(30),"
             + " scan_time varchar(30), " + " scan_date varchar(30) );"; //+ " product_name varchar(30) );";
 
@@ -53,7 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         ContentValues values = new ContentValues();
         //TODO Change to show product name
-//        values.put("product_name", product.getProductName());
+        values.put("product_name", product.getProductName());
         values.put("product_code", product.getProductBarcodeNo());
         values.put("scan_time", product.getScanTime());
         values.put("scan_date", product.getScanDate());
