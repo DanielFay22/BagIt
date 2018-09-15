@@ -150,6 +150,10 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
             case R.id.item_past_receipts:
                 openPastReceipts();    // Change to open receipts
                 break;
+
+            case R.id.item_clear_items:
+                clearItems();
+                break;
 //            case R.id.item_rate_app:
 //                openRate();
 //                break ;
@@ -199,6 +203,10 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,"Barcode Reader Android App");
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBodyText);
         startActivity(Intent.createChooser(sharingIntent, "Share"));
+    }
+
+    private void clearItems()   {
+        this.itemScanned.clearItems();
     }
 
 //    private void openLisence() {
@@ -309,6 +317,8 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
 
     public interface  ItemScanned{
         void itemUpdated();
+
+//        void clearItems();
     }
 
 }

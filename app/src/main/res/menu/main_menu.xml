@@ -6,11 +6,11 @@
         android:orderInCategory="100"
         android:title="@string/past_receipts"
         app:showAsAction="never" />
-    <!--<item-->
-        <!--android:id="@+id/item_rate_app"-->
-        <!--android:orderInCategory="100"-->
-        <!--android:title="@string/rate_app"-->
-        <!--app:showAsAction="never" />-->
+    <item
+        android:id="@+id/item_clear_items"
+        android:orderInCategory="100"
+        android:title="@string/clear_items"
+        app:showAsAction="never" />
     <!--<item-->
         <!--android:id="@+id/item_submit_bug"-->
         <!--android:orderInCategory="100"-->

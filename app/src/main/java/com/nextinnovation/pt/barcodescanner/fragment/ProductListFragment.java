@@ -95,4 +95,11 @@ public class ProductListFragment extends Fragment implements MainActivity.ItemSc
     public void itemUpdated() {
         loadProductList();
     }
+
+//    @Override
+//    public void clearItems()    {
+//        db.clearItems();
+//        productArrayList = new ArrayList<>();
+//        emptyLayout.setVisibility(View.VISIBLE);
+//    }
 }

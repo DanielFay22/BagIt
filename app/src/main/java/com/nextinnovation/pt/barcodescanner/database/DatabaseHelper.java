@@ -89,6 +89,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return productArrayList;
     }
 
+//    public void clearItems()    {
+//        String sql = "DELETE FROM " + TABLE_PRODUCT;
+//
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        db.execSQL(sql);
+//
+//        db.close();
+//    }
+
 
 }
     // Getting contacts Count
