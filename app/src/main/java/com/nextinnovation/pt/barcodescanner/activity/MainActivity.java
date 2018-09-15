@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
 
         builder.setMessage(itemInfo.getItem(scanContent))
                 .setTitle(R.string.dialog_title);
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Add to Cart\t", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 DatabaseHelper databaseHelper = new DatabaseHelper(context);
                 databaseHelper.addProduct(new Product(scanContent,currentTime,currentDate,

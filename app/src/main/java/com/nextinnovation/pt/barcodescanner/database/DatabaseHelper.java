@@ -65,8 +65,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void removeProduct(Product product)  {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String sql = "DELETE FROM " + TABLE_PRODUCT + "Where product_code=" + product.getProductBarcodeNo()
-                + "AND scan_time=" + product.getScanTime();
+        String sql = "DELETE FROM " + TABLE_PRODUCT + " Where product_code='"
+                + product.getProductBarcodeNo() + "'"
+                + " AND scan_time='" + product.getScanTime() + "'";
 
         db.execSQL(sql);
     }

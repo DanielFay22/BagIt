@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.google.android.gms.ads.NativeExpressAdView;
 import com.nextinnovation.pt.barcodescanner.R;
 import com.nextinnovation.pt.barcodescanner.activity.WebViewActivity;
+import com.nextinnovation.pt.barcodescanner.database.DatabaseHelper;
 import com.nextinnovation.pt.barcodescanner.model.Product;
 import com.nextinnovation.pt.barcodescanner.utils.ClipBoardManager;
 
@@ -90,6 +91,11 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private void removeItem(Product product)    {
         productArrayList.remove(product);
+
+        DatabaseHelper db = new DatabaseHelper(context);
+
+        db.removeProduct(product);
+
     }
 
     private void openShareDialog(String result) {
