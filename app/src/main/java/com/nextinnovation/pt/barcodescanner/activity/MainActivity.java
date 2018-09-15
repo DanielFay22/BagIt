@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
     }
 
     private void clearItems()   {
-        this.itemScanned.clearItems();
+//        this.itemScanned.clearItems();
     }
 
 //    private void openLisence() {
