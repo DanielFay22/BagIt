@@ -3,11 +3,5 @@
 .idea
 /gradle
 /google_play_screenshots
-HackRice8_2.iml
-build.gradle
-gradle.properties
-gradlew
-gradlew.bat
-local.properties
-settings.gradle
+
 

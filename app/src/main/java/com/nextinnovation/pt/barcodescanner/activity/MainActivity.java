@@ -151,9 +151,9 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
                 openPastReceipts();    // Change to open receipts
                 break;
 
-            case R.id.item_clear_items:
-                clearItems();
-                break;
+//            case R.id.item_clear_items:
+//                clearItems();
+//                break;
 //            case R.id.item_rate_app:
 //                openRate();
 //                break ;
@@ -205,9 +205,11 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
         startActivity(Intent.createChooser(sharingIntent, "Share"));
     }
 
-    private void clearItems()   {
+//    private void clearItems()   {
+//        DatabaseHelper db = new DatabaseHelper(context);
+//        db.clearItems();
 //        this.itemScanned.clearItems();
-    }
+//    }
 
 //    private void openLisence() {
 //        LicenseFragment licensesFragment = new LicenseFragment();

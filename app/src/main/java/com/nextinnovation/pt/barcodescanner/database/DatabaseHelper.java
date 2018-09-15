@@ -21,7 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_PRODUCT = "product";
 
 
-    private static final String CREATE_TABLE_INSTRUCTOR = "create table if not exists "
+    private static final String CREATE_TABLE_INSTRUCTOR = "create table "
             + TABLE_PRODUCT
             + " (id integer primary key autoincrement,"
             + " product_code varchar(30),"
@@ -62,6 +62,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public void removeProduct(Product product)  {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String sql = "DELETE FROM " + TABLE_PRODUCT + "Where product_code=" + product.getProductBarcodeNo()
+                + "AND scan_time=" + product.getScanTime();
+
+        db.execSQL(sql);
+    }
+
 
     public ArrayList<Object> getAllProduct() {
         ArrayList<Object> productArrayList = new ArrayList<Object>();
@@ -90,12 +99,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 //    public void clearItems()    {
+////        onCreate(this.getReadableDatabase());
 //        String sql = "DELETE FROM " + TABLE_PRODUCT;
 //
 //        SQLiteDatabase db = this.getWritableDatabase();
 //        db.execSQL(sql);
 //
-//        db.close();
+////        db.close();
 //    }
 
 

@@ -83,9 +83,13 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         holder.btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openShareDialog(product.getProductBarcodeNo());
+                removeItem(product);
             }
         });
+    }
+
+    private void removeItem(Product product)    {
+        productArrayList.remove(product);
     }
 
     private void openShareDialog(String result) {

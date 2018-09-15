@@ -159,10 +159,10 @@
                               android:layout_margin="5dp"
                               android:id="@+id/btn_share"
                               android:textColor="#FFF"
-                              android:text="@string/share"
-                              android:drawableLeft="@drawable/ic_share_black_24dp"
+                              android:text="@string/remove"
                               android:background="@drawable/button_background"
                               />
+                            <!--android:drawableLeft="@drawable/ic_warning_black_24dp-->
 
                         </LinearLayout>
 
