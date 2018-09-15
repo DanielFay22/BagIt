@@ -37,46 +37,24 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        switch (viewType){
-            case PRODUCT_ITEM_VIEW_TYPE :
-            default:
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_barcode,parent,false);
-                return new ProductViewHolder(view);
-            case AD_VIEW_TYPE:
-                View nativeExpressLayoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_native_express_add, parent , false);
-                return  new NativeExpressAdViewHolder(nativeExpressLayoutView);
-        }
+
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_barcode,parent,false);
+        return new ProductViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-       int viewType = getItemViewType(position);
-       switch (viewType){
-           case PRODUCT_ITEM_VIEW_TYPE:
-           default :
-               ProductViewHolder productViewHolder = (ProductViewHolder)holder;
-               setProductView(productViewHolder , position);
-               break ;
-           case AD_VIEW_TYPE:
-               /** Now set the add view in the cardview of adViewHolder **/
-               NativeExpressAdViewHolder nativeExpressAdViewHolder = (NativeExpressAdViewHolder) holder;
-               NativeExpressAdView adView = (NativeExpressAdView)productArrayList.get(position);
-               ViewGroup adCardView = (ViewGroup)nativeExpressAdViewHolder.itemView;
-               adCardView.removeAllViews();
-               if(adView.getParent()!=null){
-                   ((ViewGroup)adView.getParent()).removeView(adView);
-               }
-               adCardView.addView(adView);
-               break ;
 
-       }
+       ProductViewHolder productViewHolder = (ProductViewHolder)holder;
+       setProductView(productViewHolder , position);
+
     }
 
     private void setProductView(ProductViewHolder holder, final  int position) {
         final Product product = (Product)productArrayList.get(position);
         holder.txtScanResult.setText(product.getProductBarcodeNo());
         holder.txtScanTime.setText(product.getScanDate()+" "+product.getScanTime());
-        holder.txtScanNo.setText(String.valueOf(position+1));
+        holder.txtScanNo.setText(product.getProductName());
 
         if(position%2==0){
             holder.layoutRightButtons.setBackgroundColor(context.getResources().getColor(R.color.card_right_blue));
@@ -160,9 +138,5 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
-    public class NativeExpressAdViewHolder extends  RecyclerView.ViewHolder{
-        public NativeExpressAdViewHolder(View itemView) {
-            super(itemView);
-        }
-    }
+
 }

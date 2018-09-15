@@ -68,9 +68,6 @@ public class ProductListFragment extends Fragment implements MainActivity.ItemSc
     private void loadProductList() {
         db= new DatabaseHelper(getContext());
         productArrayList = db.getAllProduct();
-        if(Utils.isNetworkAvailable(getContext())){
-            addNativeExpressAd();
-        }
 
         if(!productArrayList.isEmpty()){
             mAdapter = new ProductAdapter(getContext(), productArrayList);
@@ -88,18 +85,6 @@ public class ProductListFragment extends Fragment implements MainActivity.ItemSc
 
     }
 
-    private void addNativeExpressAd() {
-        /** Setting adViewItem dynamically into the **/
-        for(int i=0 ; i<productArrayList.size(); i+=4){
-
-                final  NativeExpressAdView adView = new NativeExpressAdView(getActivity());
-                adView.setAdUnitId(getContext().getResources().getString(R.string.ad_unit_id));
-                adView.setAdSize(new AdSize(320 , 150));
-                adView.loadAd(new AdRequest.Builder().build());
-                productArrayList.add(i , adView);
-        }
-
-    }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

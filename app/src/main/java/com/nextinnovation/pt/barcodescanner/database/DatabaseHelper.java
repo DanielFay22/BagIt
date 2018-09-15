@@ -17,14 +17,15 @@ import java.util.ArrayList;
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String LOG = "DatabaseHelper";
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "EmployeDatabase";
+    private static final String DATABASE_NAME = "ProductDatabase";
     private static final String TABLE_PRODUCT = "product";
 
 
     private static final String CREATE_TABLE_INSTRUCTOR = "create table if not exists "
             + TABLE_PRODUCT
             + " (id integer primary key autoincrement,"
-            + " product_code varchar(30)," + " scan_time varchar(30), " + " scan_date varchar(30));";
+            + " product_code varchar(30),"
+            + " scan_time varchar(30), " + " scan_date varchar(30) );"; //+ " product_name varchar(30) );";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -51,6 +52,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void addProduct(Product product) {
         SQLiteDatabase db = this.getReadableDatabase();
         ContentValues values = new ContentValues();
+        //TODO Change to show product name
+//        values.put("product_name", product.getProductName());
         values.put("product_code", product.getProductBarcodeNo());
         values.put("scan_time", product.getScanTime());
         values.put("scan_date", product.getScanDate());
@@ -63,7 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<Object> getAllProduct() {
         ArrayList<Object> productArrayList = new ArrayList<Object>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_PRODUCT+" ORDER BY id DESC";
+        String selectQuery = "SELECT  * FROM " + TABLE_PRODUCT + " ORDER BY id DESC";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -72,7 +75,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Product product = new Product();
-                product.setProductNo(cursor.getString(0));
+//                product.setProductNo(cursor.getString(0));
+                product.setProductName(cursor.getString(0));
                 product.setProductBarcodeNo(cursor.getString(1));
                 product.setScanTime(cursor.getString(2));
                 product.setScanDate(cursor.getString(3));

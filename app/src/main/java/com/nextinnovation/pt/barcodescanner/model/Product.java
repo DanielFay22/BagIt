@@ -26,6 +26,10 @@ public class Product implements Serializable {
         this.productName = productName;
     }
 
+    public String getProductName() {
+        return productName;
+    }
+
     public String getProductNo() {
         return productNo;
     }
