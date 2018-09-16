@@ -21,6 +21,7 @@ import java.util.ArrayList;
  * Created by PT on 2/9/2017.
  */
 
+@SuppressWarnings("unchecked")
 public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private ArrayList<Object> productArrayList;
@@ -49,7 +50,8 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     private void setProductView(final ProductViewHolder holder, final  int position) {
-        @SuppressWarnings("unchecked") final Pair<Product, Integer> product = (Pair<Product, Integer>)productArrayList.get(position);
+//        Log.d("pos", Integer.toString(position));
+        final Pair<Product, Integer> product = (Pair<Product, Integer>)productArrayList.get(position);
         holder.txtScanResult.setText(product.first.getProductBarcodeNo());
 
         holder.txtScanNo.setText(product.first.getProductName());
@@ -145,11 +147,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemCount() {
-        int sum = 0;
-        for (Object p : productArrayList)   {
-            sum += ((Pair<Product, Integer>)p).second;
-        }
-        return sum;
+        return productArrayList.size();
     }
 
     public class ProductViewHolder extends RecyclerView.ViewHolder {

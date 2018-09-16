@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String LOG = "DatabaseHelper";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     private static final String DATABASE_NAME = "ProductDatabase";
     private static final String TABLE_PRODUCT = "product";
 
@@ -66,21 +66,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void removeProduct(Product product)  {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String sql = "DELETE FROM " + TABLE_PRODUCT + " Where product_code="
-                + product.getProductBarcodeNo();
+        String sql = "DELETE FROM " + TABLE_PRODUCT + " Where product_code='"
+                + product.getProductBarcodeNo() + "'";
 
         db.execSQL(sql);
     }
 
     public void removeOne(Product product)  {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
 
-        String sql = "DELETE FROM " + TABLE_PRODUCT + " WHERE ROWID=(SELECT MAX(ROWID) FROM "
-                + TABLE_PRODUCT + " Where product_code="
-                + product.getProductBarcodeNo() + ")";
+        String sql = "DELETE FROM " + TABLE_PRODUCT + " WHERE id=(SELECT MAX(id) FROM "
+                + TABLE_PRODUCT + " WHERE product_code='"
+                + product.getProductBarcodeNo() + "')";
 
         db.execSQL(sql);
     }
+
+
 
 
     public ArrayList<Object> getAllProduct() {
