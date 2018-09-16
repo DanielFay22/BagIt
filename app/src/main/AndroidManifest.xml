@@ -24,14 +24,6 @@
             </intent-filter>
         </activity>
         <activity android:name="com.nextinnovation.pt.barcodescanner.activity.MainActivity" />
-        <activity
-            android:name="com.nextinnovation.pt.barcodescanner.activity.WebViewActivity"
-            android:theme="@style/WebActivityTheme"
-            android:label="Barcode Search">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nextinnovation.pt.barcodescanner.activity.MainActivity" />
-        </activity>
         <!-- For Fabric Crash Analytics -->
         <meta-data
             android:name="io.fabric.ApiKey"
