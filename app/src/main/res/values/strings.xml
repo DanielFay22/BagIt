@@ -34,6 +34,7 @@
     <string name="app_name"><![CDATA[Bagit]]></string>
     <string name="scan">Scan</string>
     <string name="checkout">Checkout</string>
+    <string name="sample_cost">Cost: $11.50</string>
 
     <string name="googlepay_button_content_description" translatable="false">Google Pay</string>
     <string name="cart_title">View Cart (%d)</string>

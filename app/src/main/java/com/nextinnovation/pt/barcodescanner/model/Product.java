@@ -1,10 +1,12 @@
 package com.nextinnovation.pt.barcodescanner.model;
 
+import com.nextinnovation.pt.barcodescanner.database.ItemInfo;
+
 import java.io.Serializable;
 
 
 /**
- * Created by PT on 2/9/2017.
+ *
  */
 
 public class Product implements Serializable {
@@ -14,6 +16,7 @@ public class Product implements Serializable {
     private String scanDate ;
     private String productName ;
     private float productCost;
+    private ItemInfo itemInfo = new ItemInfo();
 
     public String getProductBarcodeNo() {
         return productBarcodeNo;
@@ -21,6 +24,10 @@ public class Product implements Serializable {
 
     public void setProductBarcodeNo(String productBarcodeNo) {
         this.productBarcodeNo = productBarcodeNo;
+
+        if (this.productBarcodeNo != null) {
+            this.productCost = itemInfo.getCost(this.productBarcodeNo);
+        }
     }
 
     public void setProductName(String productName)  {
@@ -56,7 +63,7 @@ public class Product implements Serializable {
     }
 
     public void setProductCost(float cost)  {
-        productCost = cost;
+        this.productCost = cost;
     }
 
     public float getProductCost()   {
@@ -70,6 +77,10 @@ public class Product implements Serializable {
         this.scanDate = scanDate;
         this.productName = itemName;
         this.productCost = cost;
+
+        if (this.productCost == 0.0)  {
+            this.productCost = itemInfo.getCost(this.productBarcodeNo);
+        }
     }
 
     public Product(){

@@ -52,9 +52,9 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private void setProductView(final ProductViewHolder holder, final  int position) {
 //        Log.d("pos", Integer.toString(position));
         final Pair<Product, Integer> product = (Pair<Product, Integer>)productArrayList.get(position);
-        holder.txtScanResult.setText(product.first.getProductBarcodeNo());
-
         holder.txtScanNo.setText(product.first.getProductName());
+
+        holder.txtCost.setText(String.format("Cost: $%.2f", product.first.getProductCost() * (float)product.second));
 
         holder.quantity.setText(String.format(holder.quantity.getTextLocale(),
                 "%d", product.second));
@@ -152,7 +152,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public class ProductViewHolder extends RecyclerView.ViewHolder {
         private LinearLayout layoutRightButtons ;
-        private TextView txtScanResult , txtScanNo ;
+        private TextView txtScanNo , txtCost ;
         private Button btnShare ;
         private TextView quantity ;
         private Button increaseQ, decreaseQ;
@@ -161,8 +161,8 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             super(itemView);
         layoutRightButtons = itemView.findViewById(R.id.layout_right_buttons);
 
+        txtCost = itemView.findViewById(R.id.txt_cost);
         txtScanNo = itemView.findViewById(R.id.txt_scan_no);
-        txtScanResult = itemView.findViewById(R.id.txt_scan_result);
         btnShare = itemView.findViewById(R.id.btn_share);
         quantity = itemView.findViewById(R.id.quantity);
         increaseQ = itemView.findViewById(R.id.increaseQ);
