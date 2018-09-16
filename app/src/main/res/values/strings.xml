@@ -34,4 +34,6 @@
     <string name="app_name"><![CDATA[Bagit]]></string>
     <string name="scan">Scan</string>
     <string name="checkout">Checkout</string>
+
+    <string name="googlepay_button_content_description" translatable="false">Google Pay</string>
 </resources>
