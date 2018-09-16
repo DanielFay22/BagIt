@@ -165,30 +165,6 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
         return super.onOptionsItemSelected(item);
     }
 
-//    private void openSubmitBug() {
-//        String to = "sarkerpt@gmail.com";
-//        String subject = "Barcode Reader For Android - Bug Report";
-//
-//        Intent email = new Intent(Intent.ACTION_SEND);
-//        email.putExtra(Intent.EXTRA_EMAIL, new String[]{to});
-//        email.putExtra(Intent.EXTRA_SUBJECT, subject);
-//        email.setType("message/rfc822");
-//        startActivity(Intent.createChooser(email, "Choose an Email client :"));
-//    }
-//
-//    private void openRate() {
-//        Uri uri = Uri.parse("market://details?id=" + context.getPackageName());
-//        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
-//        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
-//                Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
-//                Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-//        try {
-//            startActivity(goToMarket);
-//        } catch (ActivityNotFoundException e) {
-//            startActivity(new Intent(Intent.ACTION_VIEW,
-//                    Uri.parse("http://play.google.com/store/apps/details?id=" + context.getPackageName())));
-//        }
-//    }
 
     private void openPastReceipts() {
         // TODO: Create past receipts activity and launch here

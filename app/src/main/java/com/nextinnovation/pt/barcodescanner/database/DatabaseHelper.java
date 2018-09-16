@@ -102,29 +102,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return productMap;
 
-//        ArrayList<Object> productArrayList = new ArrayList<Object>();
-//        // Select All Query
-//        String selectQuery = "SELECT  * FROM " + TABLE_PRODUCT;// + " ORDER BY id DESC";
-//
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        Cursor cursor = db.rawQuery(selectQuery, null);
-//
-//        // looping through all rows and adding to list
-//        if (cursor.moveToFirst()) {
-//            do {
-//                Product product = new Product();
-//                product.setProductNo(cursor.getString(0));
-//                product.setProductBarcodeNo(cursor.getString(1));
-//                product.setScanTime(cursor.getString(2));
-//                product.setScanDate(cursor.getString(3));
-//                product.setProductName(cursor.getString(4));
-//                // Adding contact to list
-//                productArrayList.add(product);
-//            } while (cursor.moveToNext());
-//        }
-//
-//        // return contact list
-//        return productArrayList;
     }
 
     public int numItems()   {
@@ -137,4 +114,3 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 }
-    // Getting contacts Count

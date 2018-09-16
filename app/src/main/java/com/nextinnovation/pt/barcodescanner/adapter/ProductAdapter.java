@@ -1,7 +1,6 @@
 package com.nextinnovation.pt.barcodescanner.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -125,16 +124,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     private void openShareDialog(String result) {
-        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-        String appLink = "https://play.google.com/store/apps/details?id="+context.getPackageName();
-        sharingIntent.setType("text/plain");
-        String shareBodyText = "Scan Result: "+ result+"."+
-                "\nCheck Out The Cool & Fastest Barcode Reader App \n " +
-                "Link: "+appLink +" \n" +
-                " #Barcode #Android";
-        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,"Barcode Reader Android App");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBodyText);
-        context.startActivity(Intent.createChooser(sharingIntent, "Share"));
+        //TODO
     }
 
     @Override
