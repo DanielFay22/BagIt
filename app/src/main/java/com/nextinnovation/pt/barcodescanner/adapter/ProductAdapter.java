@@ -145,7 +145,11 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemCount() {
-        return productArrayList.size();
+        int sum = 0;
+        for (Object p : productArrayList)   {
+            sum += ((Pair<Product, Integer>)p).second;
+        }
+        return sum;
     }
 
     public class ProductViewHolder extends RecyclerView.ViewHolder {
