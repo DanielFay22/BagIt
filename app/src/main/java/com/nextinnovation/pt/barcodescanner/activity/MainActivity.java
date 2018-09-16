@@ -317,6 +317,10 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
 
     }
 
+    public void onCheckout()    {
+        //TODO add checkout call
+    }
+
 
     public interface  ItemScanned{
         void itemUpdated();
