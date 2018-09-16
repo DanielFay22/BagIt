@@ -1,12 +1,10 @@
 package com.nextinnovation.pt.barcodescanner.activity;
 
 import android.Manifest;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -32,7 +30,6 @@ import com.nextinnovation.pt.barcodescanner.R;
 import com.nextinnovation.pt.barcodescanner.database.DatabaseHelper;
 import com.nextinnovation.pt.barcodescanner.database.ItemInfo;
 import com.nextinnovation.pt.barcodescanner.fragment.BarcodeFragment;
-import com.nextinnovation.pt.barcodescanner.fragment.LicenseFragment;
 import com.nextinnovation.pt.barcodescanner.fragment.ProductListFragment;
 import com.nextinnovation.pt.barcodescanner.model.Product;
 
@@ -241,6 +238,7 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
         });
 
         builder.show();
+
     }
 
     @Override
@@ -321,6 +319,11 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
     public void onCheckout()    {
         //TODO add checkout call
 
+    }
+
+    public int getNumItems()    {
+        DatabaseHelper db = new DatabaseHelper(context);
+        return db.numItems();
     }
 
 

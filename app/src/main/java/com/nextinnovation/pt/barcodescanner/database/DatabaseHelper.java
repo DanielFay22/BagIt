@@ -129,6 +129,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //        return productArrayList;
     }
 
+    public int numItems()   {
+        String sql = "SELECT * FROM " + TABLE_PRODUCT;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+
+        return cursor.getCount();
+    }
+
 
 }
     // Getting contacts Count

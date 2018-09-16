@@ -1,6 +1,5 @@
 package com.nextinnovation.pt.barcodescanner.database;
 
-import android.util.ArrayMap;
 import android.util.Pair;
 
 import java.util.HashMap;
@@ -15,8 +14,8 @@ public class ItemInfo {
 
         items.put("04963406", Pair.create("COKE (12oz)", 1.0f));
         items.put("044000020170", Pair.create("Mini Oreos", 1.5f));
-        items.put("02259200701", Pair.create("Ozarka Botteled Water (16.9 fl oz)", 1.0f));
-        items.put("05200012248", Pair.create("Orange Gatorade (12oz)", 1.8f));
+        items.put("022592007014", Pair.create("Bottle Water (16.9oz)", 1.0f));
+        items.put("052000122480", Pair.create("Orange Gatorade (12oz)", 1.8f));
         items.put("9781785782343", Pair.create("BIG DATA - Brian Clegg", 12.8f));
         items.put("9780525536222", Pair.create("Measure What Matters", 15.0f));
     }
