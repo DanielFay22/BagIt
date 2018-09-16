@@ -83,6 +83,10 @@ public class ProductListFragment extends Fragment implements MainActivity.ItemSc
 
     }
 
+    public void refresh() {
+        loadProductList();
+    }
+
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

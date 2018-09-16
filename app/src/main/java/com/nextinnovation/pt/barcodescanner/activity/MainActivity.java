@@ -231,6 +231,7 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
                 viewPager.setCurrentItem(1);
 
 
+
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -319,6 +320,7 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
 
     public void onCheckout()    {
         //TODO add checkout call
+
     }
 
 
