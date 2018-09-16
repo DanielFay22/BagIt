@@ -16,7 +16,6 @@ import com.nextinnovation.pt.barcodescanner.R;
 import com.nextinnovation.pt.barcodescanner.activity.MainActivity;
 import com.nextinnovation.pt.barcodescanner.adapter.ProductAdapter;
 import com.nextinnovation.pt.barcodescanner.database.DatabaseHelper;
-import com.nextinnovation.pt.barcodescanner.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -83,11 +82,6 @@ public class ProductListFragment extends Fragment implements MainActivity.ItemSc
 
     }
 
-    public void refresh() {
-        loadProductList();
-    }
-
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         loadProductList();
@@ -98,10 +92,5 @@ public class ProductListFragment extends Fragment implements MainActivity.ItemSc
         loadProductList();
     }
 
-//    @Override
-//    public void clearItems()    {
-//        db.clearItems();
-//        productArrayList = new ArrayList<>();
-//        emptyLayout.setVisibility(View.VISIBLE);
-//    }
+
 }

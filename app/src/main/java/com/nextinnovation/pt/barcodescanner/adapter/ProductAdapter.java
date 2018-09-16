@@ -2,22 +2,18 @@ package com.nextinnovation.pt.barcodescanner.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.NativeExpressAdView;
 import com.nextinnovation.pt.barcodescanner.R;
-import com.nextinnovation.pt.barcodescanner.activity.WebViewActivity;
 import com.nextinnovation.pt.barcodescanner.database.DatabaseHelper;
 import com.nextinnovation.pt.barcodescanner.model.Product;
-import com.nextinnovation.pt.barcodescanner.utils.ClipBoardManager;
 
 import java.util.ArrayList;
 
@@ -52,11 +48,14 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     }
 
-    private void setProductView(ProductViewHolder holder, final  int position) {
-        final Product product = (Product)productArrayList.get(position);
-        holder.txtScanResult.setText(product.getProductBarcodeNo());
-        holder.txtScanTime.setText(product.getScanDate()+" "+product.getScanTime());
-        holder.txtScanNo.setText(product.getProductName());
+    private void setProductView(final ProductViewHolder holder, final  int position) {
+        @SuppressWarnings("unchecked") final Pair<Product, Integer> product = (Pair<Product, Integer>)productArrayList.get(position);
+        holder.txtScanResult.setText(product.first.getProductBarcodeNo());
+
+        holder.txtScanNo.setText(product.first.getProductName());
+
+        holder.quantity.setText(String.format(holder.quantity.getTextLocale(),
+                "%d", product.second));
 
         if(position%2==0){
             holder.layoutRightButtons.setBackgroundColor(context.getResources().getColor(R.color.card_right_blue));
@@ -65,37 +64,61 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             holder.layoutRightButtons.setBackgroundColor(context.getResources().getColor(R.color.card_right_purple));
         }
 
-
-        holder.layoutSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, WebViewActivity.class);
-                intent.putExtra("product_id",product.getProductBarcodeNo());
-                context.startActivity(intent);
-            }
-        });
-        holder.layoutCopy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ClipBoardManager clipBoardManager = new ClipBoardManager();
-                clipBoardManager.copyToClipboard(context,product.getProductBarcodeNo());
-                Snackbar.make(v,"Copied To Clipboard",Snackbar.LENGTH_SHORT).show();
-            }
-        });
         holder.btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 removeItem(product);
             }
         });
+
+        holder.decreaseQ.setOnClickListener(new View.OnClickListener()  {
+
+            @Override
+            public void onClick(View view)  {
+                Pair<Product, Integer> product = (Pair<Product, Integer>)productArrayList.get(position);
+                if (product.second > 0) {
+                    product = Pair.create(product.first,
+                            product.second - 1);
+
+                    holder.quantity.setText(String.format(holder.quantity.getTextLocale(),
+                            "%d", product.second));
+
+                    DatabaseHelper db = new DatabaseHelper(context);
+                    db.removeOne(product.first);
+
+                    productArrayList.set(position, product);
+                }
+
+            }
+        });
+
+        holder.increaseQ.setOnClickListener(new View.OnClickListener()  {
+
+            @Override
+            public void onClick(View view)  {
+                Pair<Product, Integer> product = (Pair<Product, Integer>)productArrayList.get(position);
+
+                product = Pair.create(product.first,
+                        product.second + 1);
+
+                holder.quantity.setText(String.format(holder.quantity.getTextLocale(),
+                        "%d", product.second));
+
+                DatabaseHelper db = new DatabaseHelper(context);
+                db.addProduct(product.first);
+
+                productArrayList.set(position, product);
+            }
+        });
+
     }
 
-    private void removeItem(Product product)    {
+    private void removeItem(Pair<Product, Integer> product)    {
         productArrayList.remove(product);
 
         DatabaseHelper db = new DatabaseHelper(context);
 
-        db.removeProduct(product);
+        db.removeProduct(product.first);
 
     }
 
@@ -127,19 +150,21 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public class ProductViewHolder extends RecyclerView.ViewHolder {
         private LinearLayout layoutRightButtons ;
-        private RelativeLayout layoutCopy , layoutSearch ;
-        private TextView txtScanResult , txtScanNo , txtScanTime ;
+        private TextView txtScanResult , txtScanNo ;
         private Button btnShare ;
+        private TextView quantity ;
+        private Button increaseQ, decreaseQ;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
         layoutRightButtons = itemView.findViewById(R.id.layout_right_buttons);
-        layoutCopy = itemView.findViewById(R.id.layout_copy);
-        layoutSearch = itemView.findViewById(R.id.layout_search);
+
         txtScanNo = itemView.findViewById(R.id.txt_scan_no);
         txtScanResult = itemView.findViewById(R.id.txt_scan_result);
-        txtScanTime = itemView.findViewById(R.id.txt_date_time);
         btnShare = itemView.findViewById(R.id.btn_share);
+        quantity = itemView.findViewById(R.id.quantity);
+        increaseQ = itemView.findViewById(R.id.increaseQ);
+        decreaseQ = itemView.findViewById(R.id.decreaseQ);
 
         }
     }
