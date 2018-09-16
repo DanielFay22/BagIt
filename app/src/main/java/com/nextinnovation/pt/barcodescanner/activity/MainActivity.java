@@ -202,16 +202,6 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
         startActivity(Intent.createChooser(sharingIntent, "Share"));
     }
 
-//    private void clearItems()   {
-//        DatabaseHelper db = new DatabaseHelper(context);
-//        db.clearItems();
-//        this.itemScanned.clearItems();
-//    }
-
-//    private void openLisence() {
-//        LicenseFragment licensesFragment = new LicenseFragment();
-//        licensesFragment.show(getSupportFragmentManager().beginTransaction(), "dialog_licenses");
-//    }
 
     private void showDialog(final String scanContent, final String currentTime,
                             final String currentDate) {

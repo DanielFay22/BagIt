@@ -18,7 +18,7 @@ import com.nextinnovation.pt.barcodescanner.model.Product;
 import java.util.ArrayList;
 
 /**
- * Created by PT on 2/9/2017.
+ *
  */
 
 @SuppressWarnings("unchecked")

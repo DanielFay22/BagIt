@@ -20,7 +20,7 @@ import com.nextinnovation.pt.barcodescanner.database.DatabaseHelper;
 import java.util.ArrayList;
 
 /**
- * Created by PT on 2/9/2017.
+ *
  */
 
 public class ProductListFragment extends Fragment implements MainActivity.ItemScanned {

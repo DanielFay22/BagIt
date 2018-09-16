@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.crashlytics.android.Crashlytics;
-import com.google.android.gms.ads.MobileAds;
 import com.nextinnovation.pt.barcodescanner.R;
 
 import io.fabric.sdk.android.Fabric;
@@ -18,8 +17,7 @@ public class SplashActivity extends Activity {
         setContentView(R.layout.activity_splash);
         /** Initialize Fabrice **/
         Fabric.with(SplashActivity.this ,  new Crashlytics());
-        /** Initialize Firebase Ads **/
-//        MobileAds.initialize(this, getResources().getString(R.string.app_ad_id));
+
         startMainActivity();
         finish();
     }
