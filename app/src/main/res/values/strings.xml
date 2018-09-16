@@ -32,4 +32,6 @@
     <string name="sample_code">123123123123221</string>
     <string name="date_example">10 Nov 2017 12.12 AM</string>
     <string name="app_name"><![CDATA[Bagit]]></string>
+    <string name="scan">Scan</string>
+    <string name="checkout">Checkout</string>
 </resources>

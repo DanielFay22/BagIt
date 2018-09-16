@@ -19,7 +19,7 @@ public class SplashActivity extends Activity {
         /** Initialize Fabrice **/
         Fabric.with(SplashActivity.this ,  new Crashlytics());
         /** Initialize Firebase Ads **/
-        MobileAds.initialize(this, getResources().getString(R.string.app_ad_id));
+//        MobileAds.initialize(this, getResources().getString(R.string.app_ad_id));
         startMainActivity();
         finish();
     }

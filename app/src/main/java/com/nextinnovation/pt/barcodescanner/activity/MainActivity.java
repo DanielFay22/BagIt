@@ -58,8 +58,6 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
 
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,14 +72,16 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
 
         itemInfo = new ItemInfo();
 
+
     }
+
+
 
     @Override
     protected void onResume() {
         super.onResume();
 
     }
-
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -220,13 +220,13 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
                             final String currentDate) {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
-        builder.setMessage(itemInfo.getItem(scanContent))
+        builder.setMessage(itemInfo.getName(scanContent))
                 .setTitle(R.string.dialog_title);
         builder.setPositiveButton("Add to Cart\t", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 DatabaseHelper databaseHelper = new DatabaseHelper(context);
                 databaseHelper.addProduct(new Product(scanContent,currentTime,currentDate,
-                        itemInfo.getItem(scanContent)));
+                        itemInfo.getName(scanContent), itemInfo.getCost(scanContent)));
                 Toast.makeText(MainActivity.this, "Saved", Toast.LENGTH_SHORT).show();
                 viewPager.setCurrentItem(1);
 
@@ -304,6 +304,7 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
         materialBarcodeScanner.startScan();
     }
 
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -320,7 +321,6 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
     public interface  ItemScanned{
         void itemUpdated();
 
-//        void clearItems();
     }
 
 }

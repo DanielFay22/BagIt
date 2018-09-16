@@ -12,9 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.NativeExpressAdView;
 import com.nextinnovation.pt.barcodescanner.R;
 import com.nextinnovation.pt.barcodescanner.activity.MainActivity;
 import com.nextinnovation.pt.barcodescanner.adapter.ProductAdapter;
@@ -35,6 +32,7 @@ public class ProductListFragment extends Fragment implements MainActivity.ItemSc
     ArrayList<Object> productArrayList;
     private RelativeLayout mainLayout , emptyLayout ;
     DatabaseHelper db ;
+
     public ProductListFragment(){
 
     }

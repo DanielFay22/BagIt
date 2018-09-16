@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.nextinnovation.pt.barcodescanner.model.Product;
 
@@ -16,17 +17,15 @@ import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String LOG = "DatabaseHelper";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "ProductDatabase";
     private static final String TABLE_PRODUCT = "product";
 
 
     private static final String CREATE_TABLE_INSTRUCTOR = "create table "
             + TABLE_PRODUCT
-            + " (id integer primary key autoincrement,"
-            + " product_name varchar(30),"
-            + " product_code varchar(30),"
-            + " scan_time varchar(30), " + " scan_date varchar(30) );"; //+ " product_name varchar(30) );";
+            + "(id integer primary key," + " product_code varchar(30),"
+            + " scan_time varchar(30), " + " scan_date varchar(30)," + " product_name varchar(30) );"; //+ " product_name varchar(30) );";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -54,10 +53,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         ContentValues values = new ContentValues();
         //TODO Change to show product name
-        values.put("product_name", product.getProductName());
         values.put("product_code", product.getProductBarcodeNo());
         values.put("scan_time", product.getScanTime());
         values.put("scan_date", product.getScanDate());
+        values.put("product_name", product.getProductName());
         db.insert(TABLE_PRODUCT, null, values);
         db.close();
 
@@ -77,7 +76,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<Object> getAllProduct() {
         ArrayList<Object> productArrayList = new ArrayList<Object>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_PRODUCT + " ORDER BY id DESC";
+        String selectQuery = "SELECT  * FROM " + TABLE_PRODUCT;// + " ORDER BY id DESC";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -85,12 +84,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
+                Log.d("row data", String.join(" ", cursor.getColumnNames()));
                 Product product = new Product();
-//                product.setProductNo(cursor.getString(0));
-                product.setProductName(cursor.getString(0));
+                product.setProductNo(cursor.getString(0));
                 product.setProductBarcodeNo(cursor.getString(1));
                 product.setScanTime(cursor.getString(2));
                 product.setScanDate(cursor.getString(3));
+                product.setProductName(cursor.getString(4));
                 // Adding contact to list
                 productArrayList.add(product);
             } while (cursor.moveToNext());

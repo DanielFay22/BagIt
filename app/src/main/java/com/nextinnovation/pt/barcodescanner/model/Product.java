@@ -13,6 +13,7 @@ public class Product implements Serializable {
     private  String scanTime;
     private String scanDate ;
     private String productName ;
+    private float productCost;
 
     public String getProductBarcodeNo() {
         return productBarcodeNo;
@@ -54,14 +55,21 @@ public class Product implements Serializable {
         this.scanDate = scanDate;
     }
 
+    public void setProductCost(float cost)  {
+        productCost = cost;
+    }
 
+    public float getProductCost()   {
+        return productCost;
+    }
 
     public Product(String productBarcodeNo, String scanTime, String scanDate,
-                   String itemName) {
+                   String itemName, float cost) {
         this.productBarcodeNo = productBarcodeNo;
         this.scanTime = scanTime;
         this.scanDate = scanDate;
         this.productName = itemName;
+        this.productCost = cost;
     }
 
     public Product(){

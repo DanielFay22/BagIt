@@ -29,7 +29,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private Context context;
     private ArrayList<Object> productArrayList;
     private static final int PRODUCT_ITEM_VIEW_TYPE = 0 ;
-    private static final int AD_VIEW_TYPE = 1;
+
     public ProductAdapter(Context context, ArrayList<Object> productArrayList) {
         this.context = context;
         this.productArrayList = productArrayList;
@@ -39,7 +39,8 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_barcode,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_barcode,parent,
+                false);
         return new ProductViewHolder(view);
     }
 
@@ -113,12 +114,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemViewType(int position) {
-        if((position%4 ==0) &&  productArrayList.get(position) instanceof NativeExpressAdView){
-            return  AD_VIEW_TYPE ;
-        }
-        else{
-            return  PRODUCT_ITEM_VIEW_TYPE;
-        }
+        return  PRODUCT_ITEM_VIEW_TYPE;
 
     }
 

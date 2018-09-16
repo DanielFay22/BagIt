@@ -46,16 +46,9 @@ public class BarcodeFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         btnScan = view.findViewById(R.id.btnScan);
         btnScan.setOnClickListener(this);
-        loadAdd(view);
 
     }
 
-    private void loadAdd(View view) {
-        AdView mAdView = view.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-
-    }
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
