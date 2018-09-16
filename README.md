@@ -1,7 +1,7 @@
 # BagIt
-## Revolutionizing The Shopping Experience
-#### BagIt will allow customers to:
-1. Buy as many items as they would like without waiting in a frustrated line.
+## Revolutionizing The Shopping Experience: Empowering the Shopper and the Merchant.
+#### BagIt will allow Shoppers to:
+1. Buy as many items as they would like without waiting in a frustrating line.
 2. Keep track of their most bought items to keep a healthier life-style.
 3. Keep track of past receipts from different merchants in one location.
 4. Simply enjoy the process of shopping.
