@@ -1,6 +1,5 @@
 # BagIt
 ## Revolutionizing The Shopping Experience
-### Google Play - https://play.google.com/store/apps/details?id=com.nextinnovation.pt.barcodescanner
 #### BagIt will allow customers to:
 1. Buy as many items as they would like without waiting in a frustrated line.
 2. Keep track of their most bought items to keep a healthier life-style.
